@@ -42,7 +42,8 @@ var
   StatsConnection = require("./modules/statsconn"),
   semver = require("semver");
 
-var IpPortPassRegex = /^(?:([^:]*):)?((?:[0-9]{1,3}\.){3}[0-9]{1,3}):([0-9]+)(?:\/(.*))?$/; // IP:port/pass
+//var IpPortPassRegex = /^(?:([^:]*):)?((?:[0-9]{1,3}\.){3}[0-9]{1,3}):([0-9]+)(?:\/(.*))?$/; // IP:port/pass
+var HostPortPassRegex = /^(?:([^:]*):)?(?:([^:]*)):([0-9]+)(?:\/(.*))?$/; // owner:dockerhost:port/pass
 
 var __dirname; // current working directory (defined by node.js)
 
@@ -371,7 +372,7 @@ function connectToServerList(servers) {
   var conn;
   for (var i = 0; i < servers.length; i++) {
     var server = servers[i];
-    var match = IpPortPassRegex.exec(server);
+    var match = HostPortPassRegex.exec(server);
     if (!match) {
       _logger.warn(server + ": ignoring server (not IP:port[/password])");
       continue;
