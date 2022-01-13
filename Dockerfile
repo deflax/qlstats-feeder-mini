@@ -8,4 +8,5 @@ RUN npm install
 
 EXPOSE 8081
 
-CMD ["node", "feeder.node.js", "-e"]
+CMD ["node", "feeder.node.js"]
+#CMD ["node", "feeder.node.js", "-e"]
